@@ -14,4 +14,5 @@
         Me.Order_DetailsTableAdapter.Fill(Me.NorthwindDataSet.Order_Details)
 
     End Sub
+
 End Class

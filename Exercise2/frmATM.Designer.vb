@@ -22,49 +22,55 @@ Partial Class frmATM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.HeadsUpLabel = New System.Windows.Forms.Label()
         Me.PinText = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.OneButton = New System.Windows.Forms.Button()
-        Me.EightButton = New System.Windows.Forms.Button()
-        Me.ZeroButton = New System.Windows.Forms.Button()
-        Me.NineButton = New System.Windows.Forms.Button()
-        Me.SevenButton = New System.Windows.Forms.Button()
-        Me.SixButton = New System.Windows.Forms.Button()
-        Me.FiveButton = New System.Windows.Forms.Button()
-        Me.FourButton = New System.Windows.Forms.Button()
-        Me.ThreeButton = New System.Windows.Forms.Button()
-        Me.TwoButton = New System.Windows.Forms.Button()
-        Me.OkayButton = New System.Windows.Forms.Button()
-        Me.WithdrawButton = New System.Windows.Forms.Button()
-        Me.DoneButton = New System.Windows.Forms.Button()
         Me.BalanceButton = New System.Windows.Forms.Button()
+        Me.DoneButton = New System.Windows.Forms.Button()
+        Me.WithdrawButton = New System.Windows.Forms.Button()
+        Me.OkayButton = New System.Windows.Forms.Button()
+        Me.TwoButton = New System.Windows.Forms.Button()
+        Me.ThreeButton = New System.Windows.Forms.Button()
+        Me.FourButton = New System.Windows.Forms.Button()
+        Me.FiveButton = New System.Windows.Forms.Button()
+        Me.SixButton = New System.Windows.Forms.Button()
+        Me.SevenButton = New System.Windows.Forms.Button()
+        Me.NineButton = New System.Windows.Forms.Button()
+        Me.ZeroButton = New System.Windows.Forms.Button()
+        Me.EightButton = New System.Windows.Forms.Button()
+        Me.OneButton = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.AccountNumCombo = New System.Windows.Forms.ComboBox()
+        Me.ATMTableBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.NorthwindDataSet = New Exercise2.NorthwindDataSet()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ATMTableTableAdapter = New Exercise2.NorthwindDataSetTableAdapters.ATMTableTableAdapter()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        CType(Me.ATMTableBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NorthwindDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.HeadsUpLabel)
         Me.Panel1.Location = New System.Drawing.Point(27, 39)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(346, 150)
         Me.Panel1.TabIndex = 0
         '
-        'Label1
+        'HeadsUpLabel
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(50, 62)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(234, 17)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Please select your account number."
+        Me.HeadsUpLabel.AutoSize = True
+        Me.HeadsUpLabel.Location = New System.Drawing.Point(50, 62)
+        Me.HeadsUpLabel.Name = "HeadsUpLabel"
+        Me.HeadsUpLabel.Size = New System.Drawing.Size(234, 17)
+        Me.HeadsUpLabel.TabIndex = 0
+        Me.HeadsUpLabel.Text = "Please select your account number."
         '
         'PinText
         '
@@ -96,125 +102,15 @@ Partial Class frmATM
         Me.Panel2.Size = New System.Drawing.Size(346, 177)
         Me.Panel2.TabIndex = 2
         '
-        'OneButton
+        'BalanceButton
         '
-        Me.OneButton.Enabled = False
-        Me.OneButton.Location = New System.Drawing.Point(19, 12)
-        Me.OneButton.Name = "OneButton"
-        Me.OneButton.Size = New System.Drawing.Size(41, 32)
-        Me.OneButton.TabIndex = 0
-        Me.OneButton.Text = "1"
-        Me.OneButton.UseVisualStyleBackColor = True
-        '
-        'EightButton
-        '
-        Me.EightButton.Enabled = False
-        Me.EightButton.Location = New System.Drawing.Point(66, 88)
-        Me.EightButton.Name = "EightButton"
-        Me.EightButton.Size = New System.Drawing.Size(41, 32)
-        Me.EightButton.TabIndex = 1
-        Me.EightButton.Text = "8"
-        Me.EightButton.UseVisualStyleBackColor = True
-        '
-        'ZeroButton
-        '
-        Me.ZeroButton.Enabled = False
-        Me.ZeroButton.Location = New System.Drawing.Point(66, 126)
-        Me.ZeroButton.Name = "ZeroButton"
-        Me.ZeroButton.Size = New System.Drawing.Size(41, 32)
-        Me.ZeroButton.TabIndex = 2
-        Me.ZeroButton.Text = "0"
-        Me.ZeroButton.UseVisualStyleBackColor = True
-        '
-        'NineButton
-        '
-        Me.NineButton.Enabled = False
-        Me.NineButton.Location = New System.Drawing.Point(113, 87)
-        Me.NineButton.Name = "NineButton"
-        Me.NineButton.Size = New System.Drawing.Size(41, 32)
-        Me.NineButton.TabIndex = 3
-        Me.NineButton.Text = "9"
-        Me.NineButton.UseVisualStyleBackColor = True
-        '
-        'SevenButton
-        '
-        Me.SevenButton.Enabled = False
-        Me.SevenButton.Location = New System.Drawing.Point(19, 87)
-        Me.SevenButton.Name = "SevenButton"
-        Me.SevenButton.Size = New System.Drawing.Size(41, 32)
-        Me.SevenButton.TabIndex = 4
-        Me.SevenButton.Text = "7"
-        Me.SevenButton.UseVisualStyleBackColor = True
-        '
-        'SixButton
-        '
-        Me.SixButton.Enabled = False
-        Me.SixButton.Location = New System.Drawing.Point(113, 50)
-        Me.SixButton.Name = "SixButton"
-        Me.SixButton.Size = New System.Drawing.Size(41, 32)
-        Me.SixButton.TabIndex = 5
-        Me.SixButton.Text = "6"
-        Me.SixButton.UseVisualStyleBackColor = True
-        '
-        'FiveButton
-        '
-        Me.FiveButton.Enabled = False
-        Me.FiveButton.Location = New System.Drawing.Point(66, 50)
-        Me.FiveButton.Name = "FiveButton"
-        Me.FiveButton.Size = New System.Drawing.Size(41, 32)
-        Me.FiveButton.TabIndex = 6
-        Me.FiveButton.Text = "5"
-        Me.FiveButton.UseVisualStyleBackColor = True
-        '
-        'FourButton
-        '
-        Me.FourButton.Enabled = False
-        Me.FourButton.Location = New System.Drawing.Point(19, 50)
-        Me.FourButton.Name = "FourButton"
-        Me.FourButton.Size = New System.Drawing.Size(41, 32)
-        Me.FourButton.TabIndex = 7
-        Me.FourButton.Text = "4"
-        Me.FourButton.UseVisualStyleBackColor = True
-        '
-        'ThreeButton
-        '
-        Me.ThreeButton.Enabled = False
-        Me.ThreeButton.Location = New System.Drawing.Point(113, 12)
-        Me.ThreeButton.Name = "ThreeButton"
-        Me.ThreeButton.Size = New System.Drawing.Size(41, 32)
-        Me.ThreeButton.TabIndex = 8
-        Me.ThreeButton.Text = "3"
-        Me.ThreeButton.UseVisualStyleBackColor = True
-        '
-        'TwoButton
-        '
-        Me.TwoButton.Enabled = False
-        Me.TwoButton.Location = New System.Drawing.Point(66, 12)
-        Me.TwoButton.Name = "TwoButton"
-        Me.TwoButton.Size = New System.Drawing.Size(41, 32)
-        Me.TwoButton.TabIndex = 9
-        Me.TwoButton.Text = "2"
-        Me.TwoButton.UseVisualStyleBackColor = True
-        '
-        'OkayButton
-        '
-        Me.OkayButton.Enabled = False
-        Me.OkayButton.Location = New System.Drawing.Point(210, 21)
-        Me.OkayButton.Name = "OkayButton"
-        Me.OkayButton.Size = New System.Drawing.Size(94, 23)
-        Me.OkayButton.TabIndex = 10
-        Me.OkayButton.Text = "Okay"
-        Me.OkayButton.UseVisualStyleBackColor = False
-        '
-        'WithdrawButton
-        '
-        Me.WithdrawButton.Enabled = False
-        Me.WithdrawButton.Location = New System.Drawing.Point(210, 79)
-        Me.WithdrawButton.Name = "WithdrawButton"
-        Me.WithdrawButton.Size = New System.Drawing.Size(94, 23)
-        Me.WithdrawButton.TabIndex = 11
-        Me.WithdrawButton.Text = "Withdraw"
-        Me.WithdrawButton.UseVisualStyleBackColor = True
+        Me.BalanceButton.Enabled = False
+        Me.BalanceButton.Location = New System.Drawing.Point(210, 50)
+        Me.BalanceButton.Name = "BalanceButton"
+        Me.BalanceButton.Size = New System.Drawing.Size(94, 23)
+        Me.BalanceButton.TabIndex = 13
+        Me.BalanceButton.Text = "Balance"
+        Me.BalanceButton.UseVisualStyleBackColor = True
         '
         'DoneButton
         '
@@ -226,15 +122,125 @@ Partial Class frmATM
         Me.DoneButton.Text = "Done"
         Me.DoneButton.UseVisualStyleBackColor = True
         '
-        'BalanceButton
+        'WithdrawButton
         '
-        Me.BalanceButton.Enabled = False
-        Me.BalanceButton.Location = New System.Drawing.Point(210, 50)
-        Me.BalanceButton.Name = "BalanceButton"
-        Me.BalanceButton.Size = New System.Drawing.Size(94, 23)
-        Me.BalanceButton.TabIndex = 13
-        Me.BalanceButton.Text = "Balance"
-        Me.BalanceButton.UseVisualStyleBackColor = True
+        Me.WithdrawButton.Enabled = False
+        Me.WithdrawButton.Location = New System.Drawing.Point(210, 79)
+        Me.WithdrawButton.Name = "WithdrawButton"
+        Me.WithdrawButton.Size = New System.Drawing.Size(94, 23)
+        Me.WithdrawButton.TabIndex = 11
+        Me.WithdrawButton.Text = "Withdraw"
+        Me.WithdrawButton.UseVisualStyleBackColor = True
+        '
+        'OkayButton
+        '
+        Me.OkayButton.Enabled = False
+        Me.OkayButton.Location = New System.Drawing.Point(210, 21)
+        Me.OkayButton.Name = "OkayButton"
+        Me.OkayButton.Size = New System.Drawing.Size(94, 23)
+        Me.OkayButton.TabIndex = 10
+        Me.OkayButton.Text = "Okay"
+        Me.OkayButton.UseVisualStyleBackColor = False
+        '
+        'TwoButton
+        '
+        Me.TwoButton.Enabled = False
+        Me.TwoButton.Location = New System.Drawing.Point(66, 12)
+        Me.TwoButton.Name = "TwoButton"
+        Me.TwoButton.Size = New System.Drawing.Size(41, 32)
+        Me.TwoButton.TabIndex = 9
+        Me.TwoButton.Text = "2"
+        Me.TwoButton.UseVisualStyleBackColor = True
+        '
+        'ThreeButton
+        '
+        Me.ThreeButton.Enabled = False
+        Me.ThreeButton.Location = New System.Drawing.Point(113, 12)
+        Me.ThreeButton.Name = "ThreeButton"
+        Me.ThreeButton.Size = New System.Drawing.Size(41, 32)
+        Me.ThreeButton.TabIndex = 8
+        Me.ThreeButton.Text = "3"
+        Me.ThreeButton.UseVisualStyleBackColor = True
+        '
+        'FourButton
+        '
+        Me.FourButton.Enabled = False
+        Me.FourButton.Location = New System.Drawing.Point(19, 50)
+        Me.FourButton.Name = "FourButton"
+        Me.FourButton.Size = New System.Drawing.Size(41, 32)
+        Me.FourButton.TabIndex = 7
+        Me.FourButton.Text = "4"
+        Me.FourButton.UseVisualStyleBackColor = True
+        '
+        'FiveButton
+        '
+        Me.FiveButton.Enabled = False
+        Me.FiveButton.Location = New System.Drawing.Point(66, 50)
+        Me.FiveButton.Name = "FiveButton"
+        Me.FiveButton.Size = New System.Drawing.Size(41, 32)
+        Me.FiveButton.TabIndex = 6
+        Me.FiveButton.Text = "5"
+        Me.FiveButton.UseVisualStyleBackColor = True
+        '
+        'SixButton
+        '
+        Me.SixButton.Enabled = False
+        Me.SixButton.Location = New System.Drawing.Point(113, 50)
+        Me.SixButton.Name = "SixButton"
+        Me.SixButton.Size = New System.Drawing.Size(41, 32)
+        Me.SixButton.TabIndex = 5
+        Me.SixButton.Text = "6"
+        Me.SixButton.UseVisualStyleBackColor = True
+        '
+        'SevenButton
+        '
+        Me.SevenButton.Enabled = False
+        Me.SevenButton.Location = New System.Drawing.Point(19, 87)
+        Me.SevenButton.Name = "SevenButton"
+        Me.SevenButton.Size = New System.Drawing.Size(41, 32)
+        Me.SevenButton.TabIndex = 4
+        Me.SevenButton.Text = "7"
+        Me.SevenButton.UseVisualStyleBackColor = True
+        '
+        'NineButton
+        '
+        Me.NineButton.Enabled = False
+        Me.NineButton.Location = New System.Drawing.Point(113, 87)
+        Me.NineButton.Name = "NineButton"
+        Me.NineButton.Size = New System.Drawing.Size(41, 32)
+        Me.NineButton.TabIndex = 3
+        Me.NineButton.Text = "9"
+        Me.NineButton.UseVisualStyleBackColor = True
+        '
+        'ZeroButton
+        '
+        Me.ZeroButton.Enabled = False
+        Me.ZeroButton.Location = New System.Drawing.Point(66, 126)
+        Me.ZeroButton.Name = "ZeroButton"
+        Me.ZeroButton.Size = New System.Drawing.Size(41, 32)
+        Me.ZeroButton.TabIndex = 2
+        Me.ZeroButton.Text = "0"
+        Me.ZeroButton.UseVisualStyleBackColor = True
+        '
+        'EightButton
+        '
+        Me.EightButton.Enabled = False
+        Me.EightButton.Location = New System.Drawing.Point(66, 88)
+        Me.EightButton.Name = "EightButton"
+        Me.EightButton.Size = New System.Drawing.Size(41, 32)
+        Me.EightButton.TabIndex = 1
+        Me.EightButton.Text = "8"
+        Me.EightButton.UseVisualStyleBackColor = True
+        '
+        'OneButton
+        '
+        Me.OneButton.Enabled = False
+        Me.OneButton.Location = New System.Drawing.Point(19, 12)
+        Me.OneButton.Name = "OneButton"
+        Me.OneButton.Size = New System.Drawing.Size(41, 32)
+        Me.OneButton.TabIndex = 0
+        Me.OneButton.Text = "1"
+        Me.OneButton.UseVisualStyleBackColor = True
         '
         'Panel3
         '
@@ -246,6 +252,27 @@ Partial Class frmATM
         Me.Panel3.Size = New System.Drawing.Size(346, 60)
         Me.Panel3.TabIndex = 3
         '
+        'AccountNumCombo
+        '
+        Me.AccountNumCombo.DataSource = Me.ATMTableBindingSource
+        Me.AccountNumCombo.DisplayMember = "acctNum"
+        Me.AccountNumCombo.FormattingEnabled = True
+        Me.AccountNumCombo.Location = New System.Drawing.Point(148, 13)
+        Me.AccountNumCombo.Name = "AccountNumCombo"
+        Me.AccountNumCombo.Size = New System.Drawing.Size(193, 24)
+        Me.AccountNumCombo.TabIndex = 1
+        Me.AccountNumCombo.ValueMember = "acctNum"
+        '
+        'ATMTableBindingSource
+        '
+        Me.ATMTableBindingSource.DataMember = "ATMTable"
+        Me.ATMTableBindingSource.DataSource = Me.NorthwindDataSet
+        '
+        'NorthwindDataSet
+        '
+        Me.NorthwindDataSet.DataSetName = "NorthwindDataSet"
+        Me.NorthwindDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -255,13 +282,9 @@ Partial Class frmATM
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Account Number:"
         '
-        'AccountNumCombo
+        'ATMTableTableAdapter
         '
-        Me.AccountNumCombo.FormattingEnabled = True
-        Me.AccountNumCombo.Location = New System.Drawing.Point(148, 13)
-        Me.AccountNumCombo.Name = "AccountNumCombo"
-        Me.AccountNumCombo.Size = New System.Drawing.Size(193, 24)
-        Me.AccountNumCombo.TabIndex = 1
+        Me.ATMTableTableAdapter.ClearBeforeFill = True
         '
         'frmATM
         '
@@ -279,12 +302,14 @@ Partial Class frmATM
         Me.Panel2.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.ATMTableBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NorthwindDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents HeadsUpLabel As System.Windows.Forms.Label
     Friend WithEvents PinText As System.Windows.Forms.TextBox
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents BalanceButton As System.Windows.Forms.Button
@@ -304,5 +329,8 @@ Partial Class frmATM
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents AccountNumCombo As System.Windows.Forms.ComboBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents NorthwindDataSet As Exercise2.NorthwindDataSet
+    Friend WithEvents ATMTableBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents ATMTableTableAdapter As Exercise2.NorthwindDataSetTableAdapters.ATMTableTableAdapter
 
 End Class

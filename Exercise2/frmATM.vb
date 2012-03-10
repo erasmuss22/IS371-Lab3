@@ -1,4 +1,6 @@
 ﻿Public Class frmATM
+    Public pinEntered As Boolean = False
+    Public withdrawEntered As Boolean = False
 
     Private Sub frmATM_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'NorthwindDataSet.ATMTable' table. You can move, or remove it, as needed.
@@ -83,30 +85,80 @@
         PinText.Enabled = False
         HeadsUpLabel.Text = "Please select your account number."
         PinText.Clear()
-        AccountNumCombo.Enabled = False
+        AccountNumCombo.Enabled = True
         AccountNumCombo.SelectedIndex = -1
+        pinEntered = False
+        withdrawEntered = False
     End Sub
 
     Private Sub PinText_TextChanged(sender As System.Object, e As System.EventArgs) Handles PinText.TextChanged
-        OkayButton.Enabled = True
+        If pinEntered = False Then
+            OkayButton.Enabled = True
+        ElseIf withdrawEntered = True Then
+            OkayButton.Enabled = True
+        End If
     End Sub
 
     Private Sub OkayButton_Click(sender As System.Object, e As System.EventArgs) Handles OkayButton.Click
-        Dim custPin = PinText.Text
+        If HeadsUpLabel.Text = "Please enter an amount for withdrawal." Then
+            Dim custAccout = AccountNumCombo.SelectedValue.ToString
+            Dim actualCust =
+                From customer In NorthwindDataSet.ATMTable
+                Where customer.acctNum = custAccout
+                Select customer
+            If Val(PinText.Text) <= Val(actualCust(0).balance) Then
+                actualCust(0).balance = Val(actualCust(0).balance) - Val(PinText.Text)
+                BalanceButton.Enabled = True
+                OkayButton.Enabled = False
+                HeadsUpLabel.Text = "New balance is: $" + actualCust(0).balance.ToString
+                WithdrawButton.Enabled = True
+                withdrawEntered = False
+            Else
+                HeadsUpLabel.Text = "Amount too high!"
+                PinText.Clear()
+                OkayButton.Enabled = False
+                WithdrawButton.Enabled = True
+                withdrawEntered = False
+                BalanceButton.Enabled = True
+            End If
+        Else
+            Dim custPin = PinText.Text
+            Dim custAccout = AccountNumCombo.SelectedValue.ToString
+            Dim actualCust =
+                From customer In NorthwindDataSet.ATMTable
+                Where customer.acctNum = custAccout
+                Select customer
+            If custPin = actualCust(0).pin Then
+                PinText.Clear()
+                PinText.Enabled = False
+                WithdrawButton.Enabled = True
+                BalanceButton.Enabled = True
+                HeadsUpLabel.Text = "Your balance is: $" + actualCust(0).balance.ToString
+                AccountNumCombo.Enabled = False
+                pinentered = True
+                OkayButton.Enabled = False
+            Else
+                PinText.Clear()
+                HeadsUpLabel.Text = "Your pin was incorrect. Please try again."
+            End If
+        End If
+    End Sub
+
+    Private Sub WithdrawButton_Click(sender As System.Object, e As System.EventArgs) Handles WithdrawButton.Click
+        PinText.Clear()
+        PinText.Enabled = False
+        HeadsUpLabel.Text = "Please enter an amount for withdrawal."
+        BalanceButton.Enabled = False
+        WithdrawButton.Enabled = False
+        withdrawEntered = True
+    End Sub
+
+    Private Sub BalanceButton_Click(sender As System.Object, e As System.EventArgs) Handles BalanceButton.Click
         Dim custAccout = AccountNumCombo.SelectedValue.ToString
         Dim actualCust =
             From customer In NorthwindDataSet.ATMTable
             Where customer.acctNum = custAccout
             Select customer
-        If custPin = actualCust(0).pin Then
-            PinText.Clear()
-            PinText.Enabled = True
-            WithdrawButton.Enabled = True
-            BalanceButton.Enabled = True
-            HeadsUpLabel.Text = "Your balance is: $" + actualCust(0).balance.ToString
-            AccountNumCombo.Enabled = False
-        Else
-
-        End If
+        HeadsUpLabel.Text = "Your balance is: $" + actualCust(0).balance.ToString
     End Sub
 End Class

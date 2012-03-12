@@ -4,7 +4,11 @@
 
     Private Sub frmATM_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'NorthwindDataSet.ATMTable' table. You can move, or remove it, as needed.
-        Me.ATMTableTableAdapter.Fill(Me.NorthwindDataSet.ATMTable)
+        Try
+            Me.ATMTableTableAdapter.Fill(Me.NorthwindDataSet.ATMTable)
+        Catch ex As System.Data.DBConcurrencyException
+            My.Application.Log.WriteException(ex, TraceEventType.Error, "Exception in ExceptionLogTest " & "with argument " & ex.ToString & ".")
+        End Try
         AccountNumCombo.SelectedIndex = -1
     End Sub
 
@@ -102,46 +106,65 @@
     Private Sub OkayButton_Click(sender As System.Object, e As System.EventArgs) Handles OkayButton.Click
         If HeadsUpLabel.Text = "Please enter an amount for withdrawal." Then
             Dim custAccout = AccountNumCombo.SelectedValue.ToString
-            Dim actualCust =
-                From customer In NorthwindDataSet.ATMTable
-                Where customer.acctNum = custAccout
-                Select customer
-            If Val(PinText.Text) <= Val(actualCust(0).balance) Then
-                actualCust(0).balance = Val(actualCust(0).balance) - Val(PinText.Text)
-                BalanceButton.Enabled = True
-                OkayButton.Enabled = False
-                HeadsUpLabel.Text = "New balance is: $" + actualCust(0).balance.ToString
-                WithdrawButton.Enabled = True
-                withdrawEntered = False
-            Else
-                HeadsUpLabel.Text = "Amount too high!"
-                PinText.Clear()
-                OkayButton.Enabled = False
-                WithdrawButton.Enabled = True
-                withdrawEntered = False
-                BalanceButton.Enabled = True
-            End If
+            Try
+                Dim actualCust =
+                    From customer In NorthwindDataSet.ATMTable
+                    Where customer.acctNum = custAccout
+                    Select customer
+                Try
+                    If Val(PinText.Text) <= Val(actualCust(0).balance) Then
+                        actualCust(0).balance = Val(actualCust(0).balance) - Val(PinText.Text)
+                        BalanceButton.Enabled = True
+                        OkayButton.Enabled = False
+                        HeadsUpLabel.Text = "New balance is: $" + actualCust(0).balance.ToString
+                        WithdrawButton.Enabled = True
+                        withdrawEntered = False
+                        Try
+                            Me.Validate()
+                            Me.ATMTableBindingSource.EndEdit()
+                        Catch ex As System.Data.DBConcurrencyException
+                            My.Application.Log.WriteException(ex, TraceEventType.Error, "Exception in ExceptionLogTest " & "with argument " & ex.ToString & ".")
+                        End Try
+                    Else
+                        HeadsUpLabel.Text = "Amount too high!"
+                        PinText.Clear()
+                        OkayButton.Enabled = False
+                        WithdrawButton.Enabled = True
+                        withdrawEntered = False
+                        BalanceButton.Enabled = True
+                    End If
+                Catch ex As ArgumentException
+                    My.Application.Log.WriteException(ex, TraceEventType.Error, "Exception in ExceptionLogTest " & "with argument " & ex.ToString & ".")
+                End Try
+            Catch ex As System.Data.DBConcurrencyException
+                My.Application.Log.WriteException(ex, TraceEventType.Error, "Exception in ExceptionLogTest " & "with argument " & ex.ToString & ".")
+            End Try
         Else
             Dim custPin = PinText.Text
             Dim custAccout = AccountNumCombo.SelectedValue.ToString
-            Dim actualCust =
-                From customer In NorthwindDataSet.ATMTable
-                Where customer.acctNum = custAccout
-                Select customer
-            If custPin = actualCust(0).pin Then
-                PinText.Clear()
-                PinText.Enabled = False
-                WithdrawButton.Enabled = True
-                BalanceButton.Enabled = True
-                HeadsUpLabel.Text = "Your balance is: $" + actualCust(0).balance.ToString
-                AccountNumCombo.Enabled = False
-                pinentered = True
-                OkayButton.Enabled = False
-            Else
-                PinText.Clear()
-                HeadsUpLabel.Text = "Your pin was incorrect. Please try again."
-            End If
+            Try
+                Dim actualCust =
+                    From customer In NorthwindDataSet.ATMTable
+                    Where customer.acctNum = custAccout
+                    Select customer
+                If custPin = actualCust(0).pin Then
+                    PinText.Clear()
+                    PinText.Enabled = False
+                    WithdrawButton.Enabled = True
+                    BalanceButton.Enabled = True
+                    HeadsUpLabel.Text = "Your balance is: $" + actualCust(0).balance.ToString
+                    AccountNumCombo.Enabled = False
+                    pinEntered = True
+                    OkayButton.Enabled = False
+                Else
+                    PinText.Clear()
+                    HeadsUpLabel.Text = "Your pin was incorrect. Please try again."
+                End If
+            Catch ex As System.Data.DBConcurrencyException
+                My.Application.Log.WriteException(ex, TraceEventType.Error, "Exception in ExceptionLogTest " & "with argument " & ex.ToString & ".")
+            End Try
         End If
+
     End Sub
 
     Private Sub WithdrawButton_Click(sender As System.Object, e As System.EventArgs) Handles WithdrawButton.Click
@@ -155,10 +178,14 @@
 
     Private Sub BalanceButton_Click(sender As System.Object, e As System.EventArgs) Handles BalanceButton.Click
         Dim custAccout = AccountNumCombo.SelectedValue.ToString
-        Dim actualCust =
-            From customer In NorthwindDataSet.ATMTable
-            Where customer.acctNum = custAccout
-            Select customer
-        HeadsUpLabel.Text = "Your balance is: $" + actualCust(0).balance.ToString
+        Try
+            Dim actualCust =
+                From customer In NorthwindDataSet.ATMTable
+                Where customer.acctNum = custAccout
+                Select customer
+            HeadsUpLabel.Text = "Your balance is: $" + actualCust(0).balance.ToString
+        Catch ex As System.Data.DBConcurrencyException
+            My.Application.Log.WriteException(ex, TraceEventType.Error, "Exception in ExceptionLogTest " & "with argument " & ex.ToString & ".")
+        End Try
     End Sub
 End Class

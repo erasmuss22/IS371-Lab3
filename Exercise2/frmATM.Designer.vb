@@ -47,16 +47,23 @@ Partial Class frmATM
         Me.NorthwindDataSet = New Exercise2.NorthwindDataSet()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ATMTableTableAdapter = New Exercise2.NorthwindDataSetTableAdapters.ATMTableTableAdapter()
+        Me.TableAdapterManager = New Exercise2.NorthwindDataSetTableAdapters.TableAdapterManager()
+        Me.ATMTableDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.ATMTableBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NorthwindDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ATMTableDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.ATMTableDataGridView)
         Me.Panel1.Controls.Add(Me.HeadsUpLabel)
         Me.Panel1.Location = New System.Drawing.Point(27, 39)
         Me.Panel1.Name = "Panel1"
@@ -286,11 +293,48 @@ Partial Class frmATM
         '
         Me.ATMTableTableAdapter.ClearBeforeFill = True
         '
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.ATMTableTableAdapter = Me.ATMTableTableAdapter
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.UpdateOrder = Exercise2.NorthwindDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
+        'ATMTableDataGridView
+        '
+        Me.ATMTableDataGridView.AutoGenerateColumns = False
+        Me.ATMTableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ATMTableDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3})
+        Me.ATMTableDataGridView.DataSource = Me.ATMTableBindingSource
+        Me.ATMTableDataGridView.Location = New System.Drawing.Point(18, -32)
+        Me.ATMTableDataGridView.Name = "ATMTableDataGridView"
+        Me.ATMTableDataGridView.RowTemplate.Height = 24
+        Me.ATMTableDataGridView.Size = New System.Drawing.Size(300, 220)
+        Me.ATMTableDataGridView.TabIndex = 4
+        Me.ATMTableDataGridView.Visible = False
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "acctNum"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "acctNum"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "pin"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "pin"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "balance"
+        Me.DataGridViewTextBoxColumn3.HeaderText = "balance"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        '
         'frmATM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(390, 522)
+        Me.ClientSize = New System.Drawing.Size(398, 523)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.PinText)
@@ -304,6 +348,7 @@ Partial Class frmATM
         Me.Panel3.PerformLayout()
         CType(Me.ATMTableBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NorthwindDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ATMTableDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -332,5 +377,10 @@ Partial Class frmATM
     Friend WithEvents NorthwindDataSet As Exercise2.NorthwindDataSet
     Friend WithEvents ATMTableBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents ATMTableTableAdapter As Exercise2.NorthwindDataSetTableAdapters.ATMTableTableAdapter
+    Friend WithEvents ATMTableDataGridView As System.Windows.Forms.DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents TableAdapterManager As Exercise2.NorthwindDataSetTableAdapters.TableAdapterManager
 
 End Class

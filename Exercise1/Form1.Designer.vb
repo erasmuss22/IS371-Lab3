@@ -41,6 +41,7 @@ Partial Class Form1
         Me.OrdersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.OrdersTableAdapter = New Exercise1.NorthwindDataSetTableAdapters.OrdersTableAdapter()
         Me.TableAdapterManager = New Exercise1.NorthwindDataSetTableAdapters.TableAdapterManager()
+        Me.Order_DetailsTableAdapter = New Exercise1.NorthwindDataSetTableAdapters.Order_DetailsTableAdapter()
         Me.OrderIDComboBox = New System.Windows.Forms.ComboBox()
         Me.CustomerIDTextBox = New System.Windows.Forms.TextBox()
         Me.EmployeeIDTextBox = New System.Windows.Forms.TextBox()
@@ -56,7 +57,6 @@ Partial Class Form1
         Me.ShipPostalCodeTextBox = New System.Windows.Forms.TextBox()
         Me.ShipCountryTextBox = New System.Windows.Forms.TextBox()
         Me.Order_DetailsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Order_DetailsTableAdapter = New Exercise1.NorthwindDataSetTableAdapters.Order_DetailsTableAdapter()
         Me.Order_DetailsDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -69,8 +69,8 @@ Partial Class Form1
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.CustomerSearch = New System.Windows.Forms.Button()
         Me.EmployeeSearch = New System.Windows.Forms.Button()
+        Me.CustomerSearch = New System.Windows.Forms.Button()
         Me.SaveButton = New System.Windows.Forms.Button()
         OrderIDLabel = New System.Windows.Forms.Label()
         CustomerIDLabel = New System.Windows.Forms.Label()
@@ -95,6 +95,141 @@ Partial Class Form1
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
+        'OrderIDLabel
+        '
+        OrderIDLabel.AutoSize = True
+        OrderIDLabel.Location = New System.Drawing.Point(3, 31)
+        OrderIDLabel.Name = "OrderIDLabel"
+        OrderIDLabel.Size = New System.Drawing.Size(66, 17)
+        OrderIDLabel.TabIndex = 1
+        OrderIDLabel.Text = "Order ID:"
+        '
+        'CustomerIDLabel
+        '
+        CustomerIDLabel.AutoSize = True
+        CustomerIDLabel.Location = New System.Drawing.Point(4, 33)
+        CustomerIDLabel.Name = "CustomerIDLabel"
+        CustomerIDLabel.Size = New System.Drawing.Size(89, 17)
+        CustomerIDLabel.TabIndex = 3
+        CustomerIDLabel.Text = "Customer ID:"
+        '
+        'EmployeeIDLabel
+        '
+        EmployeeIDLabel.AutoSize = True
+        EmployeeIDLabel.Location = New System.Drawing.Point(4, 59)
+        EmployeeIDLabel.Name = "EmployeeIDLabel"
+        EmployeeIDLabel.Size = New System.Drawing.Size(91, 17)
+        EmployeeIDLabel.TabIndex = 5
+        EmployeeIDLabel.Text = "Employee ID:"
+        '
+        'OrderDateLabel
+        '
+        OrderDateLabel.AutoSize = True
+        OrderDateLabel.Location = New System.Drawing.Point(3, 61)
+        OrderDateLabel.Name = "OrderDateLabel"
+        OrderDateLabel.Size = New System.Drawing.Size(83, 17)
+        OrderDateLabel.TabIndex = 7
+        OrderDateLabel.Text = "Order Date:"
+        '
+        'RequiredDateLabel
+        '
+        RequiredDateLabel.AutoSize = True
+        RequiredDateLabel.Location = New System.Drawing.Point(4, 89)
+        RequiredDateLabel.Name = "RequiredDateLabel"
+        RequiredDateLabel.Size = New System.Drawing.Size(104, 17)
+        RequiredDateLabel.TabIndex = 9
+        RequiredDateLabel.Text = "Required Date:"
+        '
+        'ShippedDateLabel
+        '
+        ShippedDateLabel.AutoSize = True
+        ShippedDateLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ShippedDateLabel.Location = New System.Drawing.Point(4, 39)
+        ShippedDateLabel.Name = "ShippedDateLabel"
+        ShippedDateLabel.Size = New System.Drawing.Size(98, 17)
+        ShippedDateLabel.TabIndex = 11
+        ShippedDateLabel.Text = "Shipped Date:"
+        '
+        'ShipViaLabel
+        '
+        ShipViaLabel.AutoSize = True
+        ShipViaLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ShipViaLabel.Location = New System.Drawing.Point(3, 67)
+        ShipViaLabel.Name = "ShipViaLabel"
+        ShipViaLabel.Size = New System.Drawing.Size(64, 17)
+        ShipViaLabel.TabIndex = 13
+        ShipViaLabel.Text = "Ship Via:"
+        '
+        'FreightLabel
+        '
+        FreightLabel.AutoSize = True
+        FreightLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        FreightLabel.Location = New System.Drawing.Point(4, 98)
+        FreightLabel.Name = "FreightLabel"
+        FreightLabel.Size = New System.Drawing.Size(56, 17)
+        FreightLabel.TabIndex = 15
+        FreightLabel.Text = "Freight:"
+        '
+        'ShipNameLabel
+        '
+        ShipNameLabel.AutoSize = True
+        ShipNameLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ShipNameLabel.Location = New System.Drawing.Point(4, 126)
+        ShipNameLabel.Name = "ShipNameLabel"
+        ShipNameLabel.Size = New System.Drawing.Size(81, 17)
+        ShipNameLabel.TabIndex = 17
+        ShipNameLabel.Text = "Ship Name:"
+        '
+        'ShipAddressLabel
+        '
+        ShipAddressLabel.AutoSize = True
+        ShipAddressLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ShipAddressLabel.Location = New System.Drawing.Point(4, 151)
+        ShipAddressLabel.Name = "ShipAddressLabel"
+        ShipAddressLabel.Size = New System.Drawing.Size(96, 17)
+        ShipAddressLabel.TabIndex = 19
+        ShipAddressLabel.Text = "Ship Address:"
+        '
+        'ShipCityLabel
+        '
+        ShipCityLabel.AutoSize = True
+        ShipCityLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ShipCityLabel.Location = New System.Drawing.Point(3, 182)
+        ShipCityLabel.Name = "ShipCityLabel"
+        ShipCityLabel.Size = New System.Drawing.Size(67, 17)
+        ShipCityLabel.TabIndex = 21
+        ShipCityLabel.Text = "Ship City:"
+        '
+        'ShipRegionLabel
+        '
+        ShipRegionLabel.AutoSize = True
+        ShipRegionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ShipRegionLabel.Location = New System.Drawing.Point(3, 210)
+        ShipRegionLabel.Name = "ShipRegionLabel"
+        ShipRegionLabel.Size = New System.Drawing.Size(89, 17)
+        ShipRegionLabel.TabIndex = 23
+        ShipRegionLabel.Text = "Ship Region:"
+        '
+        'ShipPostalCodeLabel
+        '
+        ShipPostalCodeLabel.AutoSize = True
+        ShipPostalCodeLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ShipPostalCodeLabel.Location = New System.Drawing.Point(4, 238)
+        ShipPostalCodeLabel.Name = "ShipPostalCodeLabel"
+        ShipPostalCodeLabel.Size = New System.Drawing.Size(101, 17)
+        ShipPostalCodeLabel.TabIndex = 25
+        ShipPostalCodeLabel.Text = "Ship Zip Code:"
+        '
+        'ShipCountryLabel
+        '
+        ShipCountryLabel.AutoSize = True
+        ShipCountryLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ShipCountryLabel.Location = New System.Drawing.Point(3, 268)
+        ShipCountryLabel.Name = "ShipCountryLabel"
+        ShipCountryLabel.Size = New System.Drawing.Size(93, 17)
+        ShipCountryLabel.TabIndex = 27
+        ShipCountryLabel.Text = "Ship Country:"
+        '
         'NorthwindDataSet
         '
         Me.NorthwindDataSet.DataSetName = "NorthwindDataSet"
@@ -118,14 +253,9 @@ Partial Class Form1
         Me.TableAdapterManager.OrdersTableAdapter = Me.OrdersTableAdapter
         Me.TableAdapterManager.UpdateOrder = Exercise1.NorthwindDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
-        'OrderIDLabel
+        'Order_DetailsTableAdapter
         '
-        OrderIDLabel.AutoSize = True
-        OrderIDLabel.Location = New System.Drawing.Point(3, 31)
-        OrderIDLabel.Name = "OrderIDLabel"
-        OrderIDLabel.Size = New System.Drawing.Size(66, 17)
-        OrderIDLabel.TabIndex = 1
-        OrderIDLabel.Text = "Order ID:"
+        Me.Order_DetailsTableAdapter.ClearBeforeFill = True
         '
         'OrderIDComboBox
         '
@@ -140,48 +270,23 @@ Partial Class Form1
         Me.OrderIDComboBox.TabIndex = 2
         Me.OrderIDComboBox.ValueMember = "OrderID"
         '
-        'CustomerIDLabel
-        '
-        CustomerIDLabel.AutoSize = True
-        CustomerIDLabel.Location = New System.Drawing.Point(4, 33)
-        CustomerIDLabel.Name = "CustomerIDLabel"
-        CustomerIDLabel.Size = New System.Drawing.Size(89, 17)
-        CustomerIDLabel.TabIndex = 3
-        CustomerIDLabel.Text = "Customer ID:"
-        '
         'CustomerIDTextBox
         '
         Me.CustomerIDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OrdersBindingSource, "CustomerID", True))
+        Me.CustomerIDTextBox.Enabled = False
         Me.CustomerIDTextBox.Location = New System.Drawing.Point(114, 28)
         Me.CustomerIDTextBox.Name = "CustomerIDTextBox"
         Me.CustomerIDTextBox.Size = New System.Drawing.Size(82, 22)
         Me.CustomerIDTextBox.TabIndex = 4
         '
-        'EmployeeIDLabel
-        '
-        EmployeeIDLabel.AutoSize = True
-        EmployeeIDLabel.Location = New System.Drawing.Point(4, 59)
-        EmployeeIDLabel.Name = "EmployeeIDLabel"
-        EmployeeIDLabel.Size = New System.Drawing.Size(91, 17)
-        EmployeeIDLabel.TabIndex = 5
-        EmployeeIDLabel.Text = "Employee ID:"
-        '
         'EmployeeIDTextBox
         '
         Me.EmployeeIDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OrdersBindingSource, "EmployeeID", True))
+        Me.EmployeeIDTextBox.Enabled = False
         Me.EmployeeIDTextBox.Location = New System.Drawing.Point(115, 56)
         Me.EmployeeIDTextBox.Name = "EmployeeIDTextBox"
         Me.EmployeeIDTextBox.Size = New System.Drawing.Size(81, 22)
         Me.EmployeeIDTextBox.TabIndex = 6
-        '
-        'OrderDateLabel
-        '
-        OrderDateLabel.AutoSize = True
-        OrderDateLabel.Location = New System.Drawing.Point(3, 61)
-        OrderDateLabel.Name = "OrderDateLabel"
-        OrderDateLabel.Size = New System.Drawing.Size(83, 17)
-        OrderDateLabel.TabIndex = 7
-        OrderDateLabel.Text = "Order Date:"
         '
         'OrderDateTextBox
         '
@@ -191,15 +296,6 @@ Partial Class Form1
         Me.OrderDateTextBox.Size = New System.Drawing.Size(82, 22)
         Me.OrderDateTextBox.TabIndex = 8
         '
-        'RequiredDateLabel
-        '
-        RequiredDateLabel.AutoSize = True
-        RequiredDateLabel.Location = New System.Drawing.Point(4, 89)
-        RequiredDateLabel.Name = "RequiredDateLabel"
-        RequiredDateLabel.Size = New System.Drawing.Size(104, 17)
-        RequiredDateLabel.TabIndex = 9
-        RequiredDateLabel.Text = "Required Date:"
-        '
         'RequiredDateTextBox
         '
         Me.RequiredDateTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OrdersBindingSource, "RequiredDate", True))
@@ -207,16 +303,6 @@ Partial Class Form1
         Me.RequiredDateTextBox.Name = "RequiredDateTextBox"
         Me.RequiredDateTextBox.Size = New System.Drawing.Size(82, 22)
         Me.RequiredDateTextBox.TabIndex = 10
-        '
-        'ShippedDateLabel
-        '
-        ShippedDateLabel.AutoSize = True
-        ShippedDateLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ShippedDateLabel.Location = New System.Drawing.Point(4, 39)
-        ShippedDateLabel.Name = "ShippedDateLabel"
-        ShippedDateLabel.Size = New System.Drawing.Size(98, 17)
-        ShippedDateLabel.TabIndex = 11
-        ShippedDateLabel.Text = "Shipped Date:"
         '
         'ShippedDateTextBox
         '
@@ -226,16 +312,6 @@ Partial Class Form1
         Me.ShippedDateTextBox.Size = New System.Drawing.Size(81, 22)
         Me.ShippedDateTextBox.TabIndex = 12
         '
-        'ShipViaLabel
-        '
-        ShipViaLabel.AutoSize = True
-        ShipViaLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ShipViaLabel.Location = New System.Drawing.Point(3, 67)
-        ShipViaLabel.Name = "ShipViaLabel"
-        ShipViaLabel.Size = New System.Drawing.Size(64, 17)
-        ShipViaLabel.TabIndex = 13
-        ShipViaLabel.Text = "Ship Via:"
-        '
         'ShipViaTextBox
         '
         Me.ShipViaTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OrdersBindingSource, "ShipVia", True))
@@ -243,16 +319,6 @@ Partial Class Form1
         Me.ShipViaTextBox.Name = "ShipViaTextBox"
         Me.ShipViaTextBox.Size = New System.Drawing.Size(81, 22)
         Me.ShipViaTextBox.TabIndex = 14
-        '
-        'FreightLabel
-        '
-        FreightLabel.AutoSize = True
-        FreightLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        FreightLabel.Location = New System.Drawing.Point(4, 98)
-        FreightLabel.Name = "FreightLabel"
-        FreightLabel.Size = New System.Drawing.Size(56, 17)
-        FreightLabel.TabIndex = 15
-        FreightLabel.Text = "Freight:"
         '
         'FreightTextBox
         '
@@ -262,16 +328,6 @@ Partial Class Form1
         Me.FreightTextBox.Size = New System.Drawing.Size(81, 22)
         Me.FreightTextBox.TabIndex = 16
         '
-        'ShipNameLabel
-        '
-        ShipNameLabel.AutoSize = True
-        ShipNameLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ShipNameLabel.Location = New System.Drawing.Point(4, 126)
-        ShipNameLabel.Name = "ShipNameLabel"
-        ShipNameLabel.Size = New System.Drawing.Size(81, 17)
-        ShipNameLabel.TabIndex = 17
-        ShipNameLabel.Text = "Ship Name:"
-        '
         'ShipNameTextBox
         '
         Me.ShipNameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OrdersBindingSource, "ShipName", True))
@@ -279,16 +335,6 @@ Partial Class Form1
         Me.ShipNameTextBox.Name = "ShipNameTextBox"
         Me.ShipNameTextBox.Size = New System.Drawing.Size(121, 22)
         Me.ShipNameTextBox.TabIndex = 18
-        '
-        'ShipAddressLabel
-        '
-        ShipAddressLabel.AutoSize = True
-        ShipAddressLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ShipAddressLabel.Location = New System.Drawing.Point(4, 151)
-        ShipAddressLabel.Name = "ShipAddressLabel"
-        ShipAddressLabel.Size = New System.Drawing.Size(96, 17)
-        ShipAddressLabel.TabIndex = 19
-        ShipAddressLabel.Text = "Ship Address:"
         '
         'ShipAddressTextBox
         '
@@ -298,16 +344,6 @@ Partial Class Form1
         Me.ShipAddressTextBox.Size = New System.Drawing.Size(121, 22)
         Me.ShipAddressTextBox.TabIndex = 20
         '
-        'ShipCityLabel
-        '
-        ShipCityLabel.AutoSize = True
-        ShipCityLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ShipCityLabel.Location = New System.Drawing.Point(3, 182)
-        ShipCityLabel.Name = "ShipCityLabel"
-        ShipCityLabel.Size = New System.Drawing.Size(67, 17)
-        ShipCityLabel.TabIndex = 21
-        ShipCityLabel.Text = "Ship City:"
-        '
         'ShipCityTextBox
         '
         Me.ShipCityTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OrdersBindingSource, "ShipCity", True))
@@ -315,16 +351,6 @@ Partial Class Form1
         Me.ShipCityTextBox.Name = "ShipCityTextBox"
         Me.ShipCityTextBox.Size = New System.Drawing.Size(121, 22)
         Me.ShipCityTextBox.TabIndex = 22
-        '
-        'ShipRegionLabel
-        '
-        ShipRegionLabel.AutoSize = True
-        ShipRegionLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ShipRegionLabel.Location = New System.Drawing.Point(3, 210)
-        ShipRegionLabel.Name = "ShipRegionLabel"
-        ShipRegionLabel.Size = New System.Drawing.Size(89, 17)
-        ShipRegionLabel.TabIndex = 23
-        ShipRegionLabel.Text = "Ship Region:"
         '
         'ShipRegionTextBox
         '
@@ -334,16 +360,6 @@ Partial Class Form1
         Me.ShipRegionTextBox.Size = New System.Drawing.Size(81, 22)
         Me.ShipRegionTextBox.TabIndex = 24
         '
-        'ShipPostalCodeLabel
-        '
-        ShipPostalCodeLabel.AutoSize = True
-        ShipPostalCodeLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ShipPostalCodeLabel.Location = New System.Drawing.Point(4, 238)
-        ShipPostalCodeLabel.Name = "ShipPostalCodeLabel"
-        ShipPostalCodeLabel.Size = New System.Drawing.Size(101, 17)
-        ShipPostalCodeLabel.TabIndex = 25
-        ShipPostalCodeLabel.Text = "Ship Zip Code:"
-        '
         'ShipPostalCodeTextBox
         '
         Me.ShipPostalCodeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.OrdersBindingSource, "ShipPostalCode", True))
@@ -351,16 +367,6 @@ Partial Class Form1
         Me.ShipPostalCodeTextBox.Name = "ShipPostalCodeTextBox"
         Me.ShipPostalCodeTextBox.Size = New System.Drawing.Size(81, 22)
         Me.ShipPostalCodeTextBox.TabIndex = 26
-        '
-        'ShipCountryLabel
-        '
-        ShipCountryLabel.AutoSize = True
-        ShipCountryLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ShipCountryLabel.Location = New System.Drawing.Point(3, 268)
-        ShipCountryLabel.Name = "ShipCountryLabel"
-        ShipCountryLabel.Size = New System.Drawing.Size(93, 17)
-        ShipCountryLabel.TabIndex = 27
-        ShipCountryLabel.Text = "Ship Country:"
         '
         'ShipCountryTextBox
         '
@@ -374,10 +380,6 @@ Partial Class Form1
         '
         Me.Order_DetailsBindingSource.DataMember = "FK_Order_Details_Orders"
         Me.Order_DetailsBindingSource.DataSource = Me.OrdersBindingSource
-        '
-        'Order_DetailsTableAdapter
-        '
-        Me.Order_DetailsTableAdapter.ClearBeforeFill = True
         '
         'Order_DetailsDataGridView
         '
@@ -509,15 +511,6 @@ Partial Class Form1
         Me.Panel3.Size = New System.Drawing.Size(298, 93)
         Me.Panel3.TabIndex = 35
         '
-        'CustomerSearch
-        '
-        Me.CustomerSearch.Location = New System.Drawing.Point(202, 27)
-        Me.CustomerSearch.Name = "CustomerSearch"
-        Me.CustomerSearch.Size = New System.Drawing.Size(70, 23)
-        Me.CustomerSearch.TabIndex = 35
-        Me.CustomerSearch.Text = "Search"
-        Me.CustomerSearch.UseVisualStyleBackColor = True
-        '
         'EmployeeSearch
         '
         Me.EmployeeSearch.Location = New System.Drawing.Point(202, 56)
@@ -526,6 +519,15 @@ Partial Class Form1
         Me.EmployeeSearch.TabIndex = 36
         Me.EmployeeSearch.Text = "Search"
         Me.EmployeeSearch.UseVisualStyleBackColor = True
+        '
+        'CustomerSearch
+        '
+        Me.CustomerSearch.Location = New System.Drawing.Point(202, 27)
+        Me.CustomerSearch.Name = "CustomerSearch"
+        Me.CustomerSearch.Size = New System.Drawing.Size(70, 23)
+        Me.CustomerSearch.TabIndex = 35
+        Me.CustomerSearch.Text = "Search"
+        Me.CustomerSearch.UseVisualStyleBackColor = True
         '
         'SaveButton
         '

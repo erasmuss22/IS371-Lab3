@@ -1,4 +1,6 @@
-﻿Public Class frmATM
+﻿' Erin Rasmussen
+' Lab 3
+Public Class frmATM
     Public pinEntered As Boolean = False
     Public withdrawEntered As Boolean = False
 
@@ -30,6 +32,7 @@
         End If
     End Sub
 
+    ' The following appends the selected number to the text box
     Private Sub OneButton_Click(sender As System.Object, e As System.EventArgs) Handles OneButton.Click
         PinText.AppendText("1")
     End Sub
@@ -70,6 +73,7 @@
         PinText.AppendText("0")
     End Sub
 
+    ' returns the application to the start state
     Private Sub DoneButton_Click(sender As System.Object, e As System.EventArgs) Handles DoneButton.Click
         OneButton.Enabled = False
         TwoButton.Enabled = False
@@ -103,6 +107,7 @@
         End If
     End Sub
 
+    ' depending on what state the machine is in, either accept/reject pin, or validate withdrawal
     Private Sub OkayButton_Click(sender As System.Object, e As System.EventArgs) Handles OkayButton.Click
         If HeadsUpLabel.Text = "Please enter an amount for withdrawal." Then
             Dim custAccout = AccountNumCombo.SelectedValue.ToString
@@ -167,6 +172,7 @@
 
     End Sub
 
+    ' puts the app into a state for withdrawing funds
     Private Sub WithdrawButton_Click(sender As System.Object, e As System.EventArgs) Handles WithdrawButton.Click
         PinText.Clear()
         PinText.Enabled = False

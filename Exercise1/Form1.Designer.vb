@@ -72,6 +72,13 @@ Partial Class Form1
         Me.EmployeeSearch = New System.Windows.Forms.Button()
         Me.CustomerSearch = New System.Windows.Forms.Button()
         Me.SaveButton = New System.Windows.Forms.Button()
+        Me.WarningLabel = New System.Windows.Forms.Label()
+        Me.CustCombo = New System.Windows.Forms.ComboBox()
+        Me.CustomersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.CustomersTableAdapter = New Exercise1.NorthwindDataSetTableAdapters.CustomersTableAdapter()
+        Me.EmployeeCombo = New System.Windows.Forms.ComboBox()
+        Me.EmployeesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.EmployeesTableAdapter = New Exercise1.NorthwindDataSetTableAdapters.EmployeesTableAdapter()
         OrderIDLabel = New System.Windows.Forms.Label()
         CustomerIDLabel = New System.Windows.Forms.Label()
         EmployeeIDLabel = New System.Windows.Forms.Label()
@@ -93,6 +100,8 @@ Partial Class Form1
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        CType(Me.CustomersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmployeesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OrderIDLabel
@@ -538,11 +547,67 @@ Partial Class Form1
         Me.SaveButton.Text = "Save"
         Me.SaveButton.UseVisualStyleBackColor = True
         '
+        'WarningLabel
+        '
+        Me.WarningLabel.AutoSize = True
+        Me.WarningLabel.ForeColor = System.Drawing.Color.Red
+        Me.WarningLabel.Location = New System.Drawing.Point(213, 548)
+        Me.WarningLabel.Name = "WarningLabel"
+        Me.WarningLabel.Size = New System.Drawing.Size(83, 17)
+        Me.WarningLabel.TabIndex = 37
+        Me.WarningLabel.Text = "Invalid data!"
+        Me.WarningLabel.Visible = False
+        '
+        'CustCombo
+        '
+        Me.CustCombo.DataSource = Me.CustomersBindingSource
+        Me.CustCombo.DisplayMember = "CustomerID"
+        Me.CustCombo.FormattingEnabled = True
+        Me.CustCombo.Location = New System.Drawing.Point(330, 159)
+        Me.CustCombo.Name = "CustCombo"
+        Me.CustCombo.Size = New System.Drawing.Size(121, 24)
+        Me.CustCombo.TabIndex = 33
+        Me.CustCombo.ValueMember = "CustomerID"
+        Me.CustCombo.Visible = False
+        '
+        'CustomersBindingSource
+        '
+        Me.CustomersBindingSource.DataMember = "Customers"
+        Me.CustomersBindingSource.DataSource = Me.NorthwindDataSet
+        '
+        'CustomersTableAdapter
+        '
+        Me.CustomersTableAdapter.ClearBeforeFill = True
+        '
+        'EmployeeCombo
+        '
+        Me.EmployeeCombo.DataSource = Me.EmployeesBindingSource
+        Me.EmployeeCombo.DisplayMember = "EmployeeID"
+        Me.EmployeeCombo.FormattingEnabled = True
+        Me.EmployeeCombo.Location = New System.Drawing.Point(330, 189)
+        Me.EmployeeCombo.Name = "EmployeeCombo"
+        Me.EmployeeCombo.Size = New System.Drawing.Size(121, 24)
+        Me.EmployeeCombo.TabIndex = 33
+        Me.EmployeeCombo.ValueMember = "EmployeeID"
+        Me.EmployeeCombo.Visible = False
+        '
+        'EmployeesBindingSource
+        '
+        Me.EmployeesBindingSource.DataMember = "Employees"
+        Me.EmployeesBindingSource.DataSource = Me.NorthwindDataSet
+        '
+        'EmployeesTableAdapter
+        '
+        Me.EmployeesTableAdapter.ClearBeforeFill = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(872, 580)
+        Me.Controls.Add(Me.EmployeeCombo)
+        Me.Controls.Add(Me.CustCombo)
+        Me.Controls.Add(Me.WarningLabel)
         Me.Controls.Add(Me.SaveButton)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
@@ -560,7 +625,10 @@ Partial Class Form1
         Me.Panel2.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.CustomersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmployeesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents NorthwindDataSet As Exercise1.NorthwindDataSet
@@ -598,4 +666,11 @@ Partial Class Form1
     Friend WithEvents EmployeeSearch As System.Windows.Forms.Button
     Friend WithEvents CustomerSearch As System.Windows.Forms.Button
     Friend WithEvents SaveButton As System.Windows.Forms.Button
+    Friend WithEvents WarningLabel As System.Windows.Forms.Label
+    Friend WithEvents CustCombo As System.Windows.Forms.ComboBox
+    Friend WithEvents CustomersBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents CustomersTableAdapter As Exercise1.NorthwindDataSetTableAdapters.CustomersTableAdapter
+    Friend WithEvents EmployeeCombo As System.Windows.Forms.ComboBox
+    Friend WithEvents EmployeesBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents EmployeesTableAdapter As Exercise1.NorthwindDataSetTableAdapters.EmployeesTableAdapter
 End Class
